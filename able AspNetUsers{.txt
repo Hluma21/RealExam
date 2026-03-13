@@ -1,0 +1,75 @@
+able AspNetUsers{
+  Id string
+  Username string
+  NormalizedUserName string
+  Email string
+  NormalizedEmail string
+  EmailConfirmed bool
+  PasswordHash string
+  SecurityStamp string
+  ConcurrencyStamp string
+  PhoneNumber string
+  PhoneNumberConfirmedTwoFactorEnabled bool
+  LockoutEnd datetime
+  LockoutEnabled bool
+  AcessFailedCount int
+
+}
+
+Table AspNetUserRoles{
+  Id int
+  UserId string 
+  RoleId string
+}
+
+Table AspNetRoles{
+  Id string
+  Name string
+  NormalizedName string
+  ConcurrencyStamp string
+}
+
+Table AspNetRoleClaims{
+  Id int
+  RoleId stirng
+  ClaimType string
+  ClaimValue string
+}
+
+Table AspNetUserRoleClaims{
+  Id int
+  Userd string
+  ClaimType string
+  ClaimValue string
+}
+
+Table AspNetUserLogins{
+  LoginProvider string
+  ProviderKey string
+  ProviderDisplayName string
+  UserId string
+}
+
+Table AspNetUserTokens{
+  UserId string
+  LoginProvider string
+  Name string
+  Value string
+}
+
+Table Products{
+  ProductsId int
+}
+
+Table Orders{
+  OdersId int
+}
+
+Table Basket{
+  BasketId int
+}
+
+Table Producers{
+  ProducersId int
+}
+
