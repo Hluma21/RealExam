@@ -1,4 +1,4 @@
-able AspNetUsers{
+Table AspNetUsers{
   Id string
   Username string
   NormalizedUserName string
@@ -57,19 +57,52 @@ Table AspNetUserTokens{
   Value string
 }
 
-Table Products{
-  ProductsId int
+Table Product{
+  ProductId int
+  ProducerId int
+  ProductName string
+  Description string
+  Rating Float
+  Stock int
+  IsAvailable bool
+  Price float
 }
 
-Table Orders{
-  OdersId int
+Table Order{
+  OrderId int
+  UserId string
+  CreatedAt datetime
+  OrderType string
+  ScheduledTime datetime
+  DeliveryAddress string
+  DeliveryCity string
+  DeliveryPostCode string
+  DeliveryFee float
+  OrderStatus string
+  DiscoundId int
+}
+
+Table OrderProduct{
+  OrderProductId int
+  OrderId int
+  ProductId int
+  Quantity int
+}
+
+Table Discount{
+  DiscountId int
+  Code string
+  Percentage float
 }
 
 Table Basket{
   BasketId int
+  UserId string
 }
 
-Table Producers{
-  ProducersId int
+Table BasketProduct{
+  BasketProductId int
+  BasketId int
+  ProductId int
+  Quantity int
 }
-
