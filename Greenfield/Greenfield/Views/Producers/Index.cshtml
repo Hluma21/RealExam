@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Greenfield.Models.Producer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProducerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProducerEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProducerInformation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProducerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProducerEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProducerInformation)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProducerId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ProducerId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProducerId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

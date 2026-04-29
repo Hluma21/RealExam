@@ -1,0 +1,133 @@
+﻿/* ===== Theme (same system as other pages) ===== */
+:root {
+    --primary-green: #1B5E20;
+    --secondary-green: #4CAF50;
+    --accent-green: #A5D6A7;
+    --background: #F9FBF9;
+    --white: #FFFFFF;
+    --text-dark: #212121;
+    --text-light: #757575;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Page Background ===== */
+body {
+    background-color: var(--background);
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+
+/* ===== Page Title ===== */
+h1 {
+    text-align: center;
+    color: var(--primary-green);
+    margin: 30px 0 20px;
+    font-weight: 700;
+    position: relative;
+}
+
+    h1::after {
+        content: '';
+        display: block;
+        width: 70px;
+        height: 4px;
+        margin: 10px auto 0;
+        background: linear-gradient(90deg, var(--primary-green), var(--secondary-green));
+        border-radius: 2px;
+    }
+
+/* ===== Dashboard Stats ===== */
+p strong {
+    color: var(--primary-green);
+}
+
+p {
+    text-align: center;
+    color: var(--text-light);
+    margin: 6px 0;
+}
+
+/* ===== Section Containers ===== */
+.dashboard-section {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px var(--shadow);
+    margin: 20px auto;
+    max-width: 1000px;
+}
+
+/* ===== Tables ===== */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px var(--shadow);
+    margin: 20px auto;
+}
+
+    /* Header */
+    .table thead {
+        background: linear-gradient(90deg, var(--primary-green), var(--secondary-green));
+        color: white;
+    }
+
+    .table th {
+        padding: 14px;
+        text-align: left;
+        font-size: 0.9rem;
+    }
+
+    /* Rows */
+    .table td {
+        padding: 14px;
+        border-bottom: 1px solid #eee;
+        font-size: 0.9rem;
+        color: var(--text-dark);
+    }
+
+    .table tbody tr:hover {
+        background-color: var(--light-green, #E8F5E9);
+        transition: 0.2s;
+    }
+
+/* ===== Links ===== */
+a {
+    color: var(--primary-green);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+/* ===== Empty state ===== */
+.empty-message {
+    text-align: center;
+    background: var(--white);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px var(--shadow);
+    max-width: 600px;
+    margin: 20px auto;
+    color: var(--text-light);
+}
+
+/* ===== Subtle animation ===== */
+.table, .dashboard-section {
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

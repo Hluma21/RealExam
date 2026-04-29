@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Greenfield.Models.OrderProduct>
+
+@{
+	ViewData["Title"] = "Order Details";
+	var firstItem = Model.FirstOrDefault();
+
+}
+
+<h1>Order Details</h1>
+
+@if (firstItem != null)
+{
+	<div>
+		<p><strong>Order ID:</strong> @firstItem.Orders.OrderId</p>
+		<p><strong>Order Date:</strong> @firstItem.Orders.OrderDate</p>
+		<p><strong>Status:</strong> @firstItem.Orders.OrderStatus</p>
+		<p><strong>Subtotal:</strong> @firstItem.Orders.Subtotal.ToString("0.00")</p>
+
+		@if (firstItem.Orders.Delivery)
+		{
+			<p><strong>Order Method:</strong> Delivery</p>
+			<p><strong>Order Type:</strong> @firstItem.Orders.OrderType</p>
+		}
+
+		@if (firstItem.Orders.Collection)
+		{
+			<p><strong>Order Method:</strong> Collection</p>
+			<p><strong>Collection Date:</strong> @firstItem.Orders.CollectionDate</p>
+		}
+	</div>
+
+	<hr />
+
+	<h2>Products Ordered</h2>
+
+	<table>
+		<thead>
+			<tr>
+				<th style="text-align:left; padding-right:20px;">Product</th>
+				<th style="text-align:left; padding-right:20px;">Price</th>
+				<th style="text-align:left; padding-right:20px;">Quantity</th>
+				<th style="text-align:left; padding-right:20px;">Sum</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td style="padding-right:20px;">@item.Products.ProductName</td>
+					<td style="padding-right:20px;">@item.Products.Price.ToString("0.00")</td>
+					<td style="padding-right:20px">@item.Quantity</td>
+					<td style="padding-right:20px">£@((item.Products.Price * item.Quantity).ToString("0.00"))</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+
+
+<div style="margin-top:20px;">
+	<a asp-action="Index">Back to Orders</a>
+</div>

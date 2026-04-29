@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Greenfield.Models.BasketProduct>
+
+@{
+    ViewData["Title"] = "Your Basket";
+    var basketId = Model.FirstOrDefault()?.BasketId;
+}
+
+<h1>Your Basket</h1>
+<link rel="stylesheet" href="~/css/Home.css" asp-append-version="true" />
+
+@if (!Model.Any())
+{
+    <div>
+        <h3>Your basket is empty</h3>
+        <p>Looks like you haven’t added any products yet.</p>
+        <a asp-controller="Products" asp-action="Index">
+            Continue Shopping
+        </a>
+    </div>
+}
+else
+{
+    <div>
+        <div>
+            @foreach (var item in Model)
+            {
+                <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+
+                    <div>
+                        <h4>@item.Products.ProductName</h4>
+                        <p>Price: £@item.Products.Price.ToString("0.00")</p>
+                    </div>
+
+                    <div>
+                        <p>Qty: @item.Quaility</p>
+                    </div>
+
+                    <div>
+                        <p>
+                            Total: £@((item.Products.Price * item.Quaility).ToString("0.00"))
+                        </p>
+
+                        <a asp-controller="BasketProducts"
+                           asp-action="Delete"
+                           asp-route-id="@item.BasketProductId">
+                            Remove
+                        </a>
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
+
+    <div style="border:1px solid #000; padding:15px; margin-top:20px;">
+        <h3>Order Summary</h3>
+
+        <div>
+            <span>Subtotal</span>
+            <span>£@((float)ViewBag.Subtotal)</span>
+        </div>
+
+        <div>
+            <span>Loyalty Discount</span>
+            <span>£@((float)ViewBag.Discount)"</span>
+        </div>
+
+        <hr />
+
+        <div>
+            <strong>Total: £</strong>
+            <strong>@((float)ViewBag.Total)</strong>
+        </div>
+
+        @if (ViewBag.Discount > 0)
+        {
+            <div>
+                <p>Your loyalty discount has been applied.</p>
+            </div>
+        }
+
+        <div>
+            <a asp-controller="Orders"
+               asp-action="Create"
+               asp-route-basketId="@basketId"
+               class="btn btn-primary w-100 mb-2">
+                Proceed to checkout
+            </a>
+
+            <a asp-controller="Products" asp-action="Index">
+                Continue Shopping
+            </a>
+        </div>
+    </div>
+}

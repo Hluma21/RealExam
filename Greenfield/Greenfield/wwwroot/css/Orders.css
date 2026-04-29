@@ -1,0 +1,342 @@
+﻿/* ===== Root Variables ===== */
+:root {
+    --primary-green: #1B5E20;
+    --secondary-green: #4CAF50;
+    --accent-green: #A5D6A7;
+    --light-green: #E8F5E9;
+    --background: #F9FBF9;
+    --white: #FFFFFF;
+    --gray: #F5F5F5;
+    --text-dark: #212121;
+    --text-light: #757575;
+    --highlight: #FFD700;
+    --danger: #C62828;
+    --warning: #F57F17;
+    --info: #1565C0;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* ===== General Body ===== */
+body {
+    background-color: var(--background);
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-dark);
+    margin: 0;
+    padding: 0;
+}
+
+    /* ===== Subtle Page Background Design ===== */
+    body::before {
+        content: '';
+        position: fixed;
+        top: -30%;
+        left: -20%;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(76, 175, 80, 0.15), transparent 70%);
+        z-index: -1;
+    }
+
+    body::after {
+        content: '';
+        position: fixed;
+        bottom: -30%;
+        right: -15%;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(27, 94, 32, 0.1), transparent 70%);
+        z-index: -1;
+    }
+
+/* ===== Page Header ===== */
+h1 {
+    color: var(--primary-green);
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 40px 0 20px;
+    position: relative;
+}
+
+    h1::after {
+        content: '';
+        display: block;
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-green), var(--secondary-green));
+        margin: 10px auto 0;
+        border-radius: 2px;
+    }
+
+/* ===== Create New Button ===== */
+p > a {
+    display: inline-block;
+    margin: 0 auto 2rem;
+    background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+    color: var(--white);
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px var(--shadow);
+}
+
+    p > a:hover {
+        transform: translateY(-2px);
+        background: linear-gradient(135deg, var(--secondary-green), var(--accent-green));
+        color: var(--white);
+    }
+
+/* ===== Orders Table ===== */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 3rem;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px var(--shadow);
+    overflow: hidden;
+}
+
+    /* ===== Table Header ===== */
+    .table thead {
+        background: linear-gradient(90deg, var(--primary-green), var(--secondary-green));
+        color: var(--white);
+    }
+
+        .table thead tr th {
+            padding: 16px 18px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+    /* ===== Table Rows ===== */
+    .table tbody tr {
+        transition: all 0.3s ease;
+        animation: fadeIn 0.5s ease;
+    }
+
+        .table tbody tr:hover {
+            background-color: var(--light-green);
+            transform: scale(1.005);
+        }
+
+        .table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .table tbody tr td {
+            padding: 16px 18px;
+            font-size: 0.9rem;
+            vertical-align: middle;
+            border-bottom: 1px solid var(--gray);
+            white-space: nowrap;
+        }
+
+            /* ===== User ID Column ===== */
+            .table tbody tr td:nth-child(1) {
+                font-weight: 600;
+                color: var(--primary-green);
+            }
+
+            /* ===== Subtotal Column ===== */
+            .table tbody tr td:nth-child(2) {
+                font-weight: 700;
+                font-size: 1rem;
+                color: var(--primary-green);
+            }
+
+                /* ===== Subtotal prefix ===== */
+                .table tbody tr td:nth-child(2)::before {
+                    content: '£';
+                    font-size: 0.85rem;
+                    font-weight: 600;
+                    opacity: 0.8;
+                }
+
+            /* ===== Order Type Column ===== */
+            .table tbody tr td:nth-child(3) {
+                font-weight: 500;
+            }
+
+            /* ===== Date Columns ===== */
+            .table tbody tr td:nth-child(7),
+            .table tbody tr td:nth-child(8) {
+                color: var(--text-light);
+                font-size: 0.88rem;
+            }
+
+            /* ===== Order Status Badge ===== */
+            .table tbody tr td:nth-child(6) {
+                font-weight: 600;
+            }
+
+                /* Status: Pending */
+                .table tbody tr td:nth-child(6):has(*[data-status="Pending"]),
+                .status-pending {
+                    color: var(--warning);
+                }
+
+                /* Status: Completed */
+                .table tbody tr td:nth-child(6):has(*[data-status="Completed"]),
+                .status-completed {
+                    color: var(--secondary-green);
+                }
+
+                /* Status: Cancelled */
+                .table tbody tr td:nth-child(6):has(*[data-status="Cancelled"]),
+                .status-cancelled {
+                    color: var(--danger);
+                }
+
+                /* Status: Processing */
+                .table tbody tr td:nth-child(6):has(*[data-status="Processing"]),
+                .status-processing {
+                    color: var(--info);
+                }
+
+            /* ===== Action Links ===== */
+            .table tbody tr td:last-child {
+                display: flex;
+                gap: 0.5rem;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+
+            .table tbody tr td a {
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 0.85rem;
+                padding: 6px 14px;
+                border-radius: 20px;
+                transition: all 0.2s ease;
+            }
+
+                /* Edit */
+                .table tbody tr td a:nth-of-type(1) {
+                    background-color: #E8F5E9;
+                    color: var(--primary-green);
+                    border: 1px solid var(--accent-green);
+                }
+
+                    .table tbody tr td a:nth-of-type(1):hover {
+                        background-color: var(--secondary-green);
+                        color: var(--white);
+                    }
+
+                /* Details */
+                .table tbody tr td a:nth-of-type(2) {
+                    background-color: #E3F2FD;
+                    color: var(--info);
+                    border: 1px solid #90CAF9;
+                }
+
+                    .table tbody tr td a:nth-of-type(2):hover {
+                        background-color: var(--info);
+                        color: var(--white);
+                    }
+
+                /* Delete */
+                .table tbody tr td a:nth-of-type(3) {
+                    background-color: #FFEBEE;
+                    color: var(--danger);
+                    border: 1px solid #EF9A9A;
+                }
+
+                    .table tbody tr td a:nth-of-type(3):hover {
+                        background-color: var(--danger);
+                        color: var(--white);
+                    }
+
+/* ===== Fade In Animation ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== Responsive — Tablet ===== */
+@media (max-width: 992px) {
+    .table {
+        overflow-x: auto;
+        display: block;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    p > a {
+        display: block;
+        width: fit-content;
+        margin: 1rem auto;
+    }
+}
+
+/* ===== Responsive — Mobile ===== */
+@media (max-width: 600px) {
+    .table thead {
+        display: none;
+    }
+
+    .table tbody tr {
+        display: block;
+        margin-bottom: 1.5rem;
+        border: 1px solid #E0E0E0;
+        border-radius: 12px;
+        padding: 12px;
+        background: var(--white);
+        box-shadow: 0 4px 12px var(--shadow);
+    }
+
+        .table tbody tr td {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--gray);
+            white-space: normal;
+        }
+
+            .table tbody tr td:last-child {
+                border-bottom: none;
+                justify-content: flex-start;
+                gap: 0.5rem;
+            }
+
+            .table tbody tr td::before {
+                content: attr(data-label);
+                font-weight: 700;
+                color: var(--primary-green);
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                min-width: 120px;
+            }
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-green);
+    border-radius: 10px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: var(--primary-green);
+    }

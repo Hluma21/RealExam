@@ -1,0 +1,289 @@
+﻿/* =========================
+   Greenfield Local Hub - Basket / General Page Styling
+   ========================= */
+
+:root {
+    --primary-green: #179c3c;
+    --dark-green: #0f7a2f;
+    --light-green: #eaf8ee;
+    --soft-green: #f6fff8;
+    --white: #ffffff;
+    --text-dark: #1f2937;
+    --text-muted: #6b7280;
+    --border: #d8e9dd;
+    --danger: #d32f2f;
+    --danger-bg: #ffebee;
+    --shadow: 0 10px 30px rgba(23, 156, 60, 0.10);
+    --shadow-hover: 0 14px 35px rgba(23, 156, 60, 0.16);
+}
+
+/* Page background */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-dark);
+    background: radial-gradient(circle at top left, rgba(23, 156, 60, 0.08), transparent 20%), radial-gradient(circle at bottom right, rgba(23, 156, 60, 0.08), transparent 22%), linear-gradient(180deg, #f8fffa 0%, #eef9f1 100%);
+    margin: 0;
+    padding: 0;
+}
+
+/* Main heading */
+h1 {
+    text-align: center;
+    color: var(--dark-green);
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin: 2rem 0 1.5rem;
+    letter-spacing: -0.5px;
+}
+
+    h1::after {
+        content: "";
+        display: block;
+        width: 95px;
+        height: 4px;
+        margin: 0.7rem auto 0;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--dark-green), var(--primary-green));
+    }
+
+/* Empty basket section */
+h3 {
+    color: var(--dark-green);
+    margin-bottom: 0.6rem;
+}
+
+p {
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* Global links */
+a {
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+/* Empty basket card */
+body > div,
+body > main,
+.text-center {
+    border-radius: 18px;
+}
+
+    /* Basket items wrapper */
+    body > div div div[style*="border:1px solid #ccc"] {
+        background: var(--white);
+        border: 1px solid var(--border) !important;
+        border-radius: 18px;
+        padding: 1.2rem !important;
+        margin-bottom: 1rem !important;
+        box-shadow: var(--shadow);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+        body > div div div[style*="border:1px solid #ccc"]:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            background: linear-gradient(180deg, #ffffff 0%, #fbfffc 100%);
+        }
+
+        /* Product name */
+        body > div div div[style*="border:1px solid #ccc"] h4 {
+            font-size: 1.25rem;
+            margin: 0 0 0.5rem 0;
+            color: var(--dark-green);
+            font-weight: 800;
+        }
+
+        /* Basket item text */
+        body > div div div[style*="border:1px solid #ccc"] p {
+            margin: 0.35rem 0;
+            font-size: 0.97rem;
+        }
+
+        /* Remove link */
+        body > div div div[style*="border:1px solid #ccc"] a {
+            display: inline-block;
+            margin-top: 0.7rem;
+            padding: 0.55rem 1rem;
+            border-radius: 999px;
+            background: var(--danger-bg);
+            color: var(--danger);
+            font-weight: 700;
+            border: 1px solid #f5c2c7;
+        }
+
+            body > div div div[style*="border:1px solid #ccc"] a:hover {
+                background: var(--danger);
+                color: var(--white);
+            }
+
+/* Order summary box */
+div[style*="border:1px solid #000"] {
+    background: var(--white);
+    border: 1px solid var(--border) !important;
+    border-radius: 20px;
+    padding: 1.5rem !important;
+    margin-top: 2rem !important;
+    box-shadow: var(--shadow);
+    max-width: 520px;
+}
+
+    /* Order summary title */
+    div[style*="border:1px solid #000"] h3 {
+        font-size: 1.5rem;
+        margin-top: 0;
+        margin-bottom: 1rem;
+        color: var(--dark-green);
+        font-weight: 800;
+    }
+
+    /* Summary rows */
+    div[style*="border:1px solid #000"] > div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.9rem;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    div[style*="border:1px solid #000"] span,
+    div[style*="border:1px solid #000"] strong {
+        font-size: 1rem;
+    }
+
+    div[style*="border:1px solid #000"] strong {
+        color: var(--dark-green);
+        font-size: 1.1rem;
+    }
+
+/* Divider */
+hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1rem 0;
+}
+
+/* Loyalty message */
+div[style*="border:1px solid #000"] p {
+    margin: 0.5rem 0 1rem;
+    color: var(--primary-green);
+    font-weight: 600;
+}
+
+/* Checkout button */
+a.btn,
+a.btn.btn-primary,
+a[class*="btn-primary"] {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 0.95rem 1.2rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--dark-green), var(--primary-green));
+    color: var(--white) !important;
+    font-weight: 800;
+    box-shadow: var(--shadow);
+    margin-bottom: 0.8rem;
+}
+
+    a.btn:hover,
+    a.btn.btn-primary:hover,
+    a[class*="btn-primary"]:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-hover);
+    }
+
+/* Continue shopping link inside summary */
+div[style*="border:1px solid #000"] a:not(.btn):not(.btn-primary):not([class*="btn-primary"]) {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 0.9rem 1.1rem;
+    border-radius: 999px;
+    background: var(--light-green);
+    color: var(--dark-green);
+    font-weight: 700;
+    border: 1px solid var(--border);
+}
+
+    div[style*="border:1px solid #000"] a:not(.btn):not(.btn-primary):not([class*="btn-primary"]):hover {
+        background: var(--primary-green);
+        color: var(--white);
+    }
+
+/* Empty basket action link */
+@if-empty-placeholder {
+}
+
+div a[asp-controller="Products"],
+a[asp-controller="Products"] {
+    font-weight: 700;
+}
+
+/* Empty state general styling */
+@if-empty-state-placeholder {
+}
+
+body h3 + p + a,
+body h3 + p + a:visited {
+    display: inline-block;
+    margin-top: 0.6rem;
+    padding: 0.9rem 1.3rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--dark-green), var(--primary-green));
+    color: var(--white);
+    font-weight: 700;
+    box-shadow: var(--shadow);
+}
+
+    body h3 + p + a:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-hover);
+    }
+
+/* Layout spacing */
+body > * {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* Basket item layout */
+body > div div div[style*="border:1px solid #ccc"] {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 1rem;
+    align-items: center;
+}
+
+    /* Price and totals emphasis */
+    body > div div div[style*="border:1px solid #ccc"] p strong,
+    body > div div div[style*="border:1px solid #ccc"] .price {
+        color: var(--dark-green);
+    }
+
+/* Responsive */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.9rem;
+    }
+
+    body > div div div[style*="border:1px solid #ccc"] {
+        grid-template-columns: 1fr;
+        text-align: left;
+    }
+
+    div[style*="border:1px solid #000"] {
+        max-width: 100%;
+    }
+
+    a.btn,
+    a.btn.btn-primary,
+    a[class*="btn-primary"] {
+        width: 100%;
+    }
+}

@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Greenfield.Models.Product>
+
+@{
+    ViewData["Title"] = "Producer Dashboard";
+}
+
+<h1>Producer Dashboard</h1>
+<link rel="stylesheet" href="~/css/Dashboard.css" asp-append-version="true" />
+
+<p>
+    <strong>Total Products:</strong> @ViewBag.TotalProducts
+</p>
+<p>
+    <strong>Low On Stock Products:</strong> @ViewBag.LowOnStockCount
+</p>
+<p>
+    <strong>Total Stock:</strong> @ViewBag.TotalStock
+</p>
+
+
+@if (!Model.Any())
+{
+    <p>You do not have any products yet.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Take(4))
+            {
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>@item.Price</td>
+                    <td>@item.stock</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<p>
+    <a asp-controller="Products" asp-action="Index">View all Products</a>
+</p>
+
+<h2>Recent Orders</h2>
+
+@if (ViewBag.RecentOrders == null || ((List<Greenfield.Models.Order>)ViewBag.RecentOrders).Count == 0)
+{
+    <p>There are no recent orders found.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Order Date</th>
+                <th>Status</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in ((List<Greenfield.Models.Order>)ViewBag.RecentOrders).Take(4))
+            {
+                <tr>
+                    <td>@order.OrderId</td>
+                    <td>@order.OrderDate</td>
+                    <td>@order.OrderStatus</td>
+                    <td>@order.Subtotal.ToString("0.00")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+}
+<p>
+    <a asp-controller="Orders" asp-action="Index">View all Orders</a>
+</p>

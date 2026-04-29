@@ -1,0 +1,143 @@
+﻿/* ===== Global Theme Variables ===== */
+:root {
+    --primary-green: #1B5E20;
+    --secondary-green: #4CAF50;
+    --accent-green: #A5D6A7;
+    --background: #F9FBF9;
+    --white: #FFFFFF;
+    --text-dark: #212121;
+    --text-light: #757575;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Global Body ===== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    background-color: var(--background);
+    color: var(--text-dark);
+}
+
+    /* ===== Page Background Glow (ALL pages) ===== */
+    body::before {
+        content: '';
+        position: fixed;
+        top: -20%;
+        left: -10%;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(76, 175, 80, 0.12), transparent 70%);
+        z-index: -1;
+    }
+
+    body::after {
+        content: '';
+        position: fixed;
+        bottom: -20%;
+        right: -10%;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(27, 94, 32, 0.10), transparent 70%);
+        z-index: -1;
+    }
+
+/* ===== Default Page Container ===== */
+.page-container,
+.home-page,
+.page-wrapper {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* ===== Shared Card Style (ALL pages) ===== */
+.hero,
+.card {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px var(--shadow);
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+}
+
+    /* hover effect */
+    .hero:hover,
+    .card:hover {
+        transform: translateY(-3px);
+    }
+
+/* ===== Headings ===== */
+h1 {
+    color: var(--primary-green);
+    font-size: 2.3rem;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+    /* underline */
+    h1::after {
+        content: '';
+        display: block;
+        width: 70px;
+        height: 4px;
+        margin: 10px auto 0;
+        background: linear-gradient(90deg, var(--primary-green), var(--secondary-green));
+        border-radius: 2px;
+    }
+
+/* ===== Paragraphs ===== */
+p {
+    color: var(--text-light);
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* ===== Links ===== */
+a {
+    color: var(--secondary-green);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+/* ===== Buttons (global) ===== */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+    }
+
+.btn-secondary {
+    background: var(--light-green, #E8F5E9);
+    color: var(--primary-green);
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 1px solid var(--accent-green);
+    transition: 0.3s;
+}
+
+    .btn-secondary:hover {
+        background: var(--secondary-green);
+        color: white;
+    }
+

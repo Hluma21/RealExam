@@ -1,0 +1,198 @@
+﻿/* ===== Theme Variables (shared with Orders) ===== */
+:root {
+    --primary-green: #1B5E20;
+    --secondary-green: #4CAF50;
+    --accent-green: #A5D6A7;
+    --light-green: #E8F5E9;
+    --background: #F7FAF7;
+    --white: #FFFFFF;
+    --text-dark: #1E1E1E;
+    --text-light: #6B7280;
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== Page Layout ===== */
+.home-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--background);
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    padding: 20px;
+    position: relative;
+}
+
+    /* subtle gradient glow */
+    .home-page::before {
+        content: '';
+        position: fixed;
+        top: -20%;
+        left: -10%;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(76, 175, 80, 0.15), transparent 70%);
+        z-index: 0;
+    }
+
+    .home-page::after {
+        content: '';
+        position: fixed;
+        bottom: -20%;
+        right: -10%;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(27, 94, 32, 0.12), transparent 70%);
+        z-index: 0;
+    }
+
+/* ===== Hero Card ===== */
+.hero {
+    position: relative;
+    z-index: 1;
+    background: var(--white);
+    padding: 60px 50px;
+    border-radius: 18px;
+    box-shadow: var(--shadow-soft);
+    text-align: center;
+    max-width: 650px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+    /* subtle hover lift */
+    .hero:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-hover);
+    }
+
+    /* ===== Title ===== */
+    .hero h1 {
+        font-size: 2.8rem;
+        font-weight: 700;
+        color: var(--primary-green);
+        margin-bottom: 10px;
+        letter-spacing: -0.5px;
+    }
+
+        /* underline accent */
+        .hero h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            margin: 12px auto 0;
+            border-radius: 2px;
+            background: linear-gradient(90deg, var(--primary-green), var(--secondary-green));
+        }
+
+/* ===== Subtitle ===== */
+.subtitle {
+    margin-top: 20px;
+    margin-bottom: 35px;
+    font-size: 1.05rem;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+    .subtitle a {
+        color: var(--secondary-green);
+        font-weight: 600;
+        text-decoration: none;
+        position: relative;
+    }
+
+        /* link underline animation */
+        .subtitle a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0%;
+            height: 2px;
+            background: var(--secondary-green);
+            transition: width 0.3s ease;
+        }
+
+        .subtitle a:hover::after {
+            width: 100%;
+        }
+
+/* ===== Buttons ===== */
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* primary button */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+    color: var(--white);
+    padding: 13px 26px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.3px;
+    box-shadow: 0 6px 18px rgba(76, 175, 80, 0.25);
+    transition: all 0.25s ease;
+}
+
+    .btn-primary:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 10px 25px rgba(76, 175, 80, 0.35);
+    }
+
+/* secondary button */
+.btn-secondary {
+    background: transparent;
+    color: var(--primary-green);
+    padding: 13px 26px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 1.5px solid var(--accent-green);
+    transition: all 0.25s ease;
+}
+
+    .btn-secondary:hover {
+        background: var(--secondary-green);
+        color: var(--white);
+        border-color: var(--secondary-green);
+        transform: translateY(-2px);
+    }
+
+/* ===== Entrance Animation ===== */
+.hero {
+    animation: fadeUp 0.6s ease;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+    .hero {
+        padding: 35px 25px;
+    }
+
+        .hero h1 {
+            font-size: 2.2rem;
+        }
+
+    .subtitle {
+        font-size: 0.95rem;
+    }
+}

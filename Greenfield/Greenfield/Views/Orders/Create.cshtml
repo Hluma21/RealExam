@@ -1,0 +1,108 @@
+﻿@model Greenfield.Models.Order
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<h1>Checkout</h1>
+<p>Choose how you like to receive your order.</p>
+
+<form asp-action="Create" method="post">
+
+    <div asp-validation-summary="ModelOnly" style="color:red;"></div>
+
+    <input type="hidden" name="basketId" value="@ViewBag.BasketId" />
+
+    <div style="margin-bottom:20px;">
+        <label style="font-weight:bold; display:block; margin-bottom:10px;">Order Method</label>
+
+        <div>
+            <input asp-for="Delivery" id="deliveryCheck" />
+            <label asp-for="Delivery">Delivery</label>
+        </div>
+
+        <div>
+            <input asp-for="Collection" id="collectionCheck" />
+            <label asp-for="Collection">Collection</label>
+        </div>
+    </div>
+
+    <div id="deliveryTypeGroup" style="display:none; margin-bottom:15px;">
+        <label asp-for="OrderType"></label>
+        <select asp-for="OrderType">
+            <option value="">Select Delivery Type</option>
+            <option value="Next Day">Next Day</option>
+            <option value="First Class">First Class</option>
+            <option value="Standard">Standard</option>
+        </select>
+        <br />
+        <span asp-validation-for="OrderType" style="color:red;"></span>
+    </div>
+
+    <div id="collectionDateGroup" style="display:none; margin-bottom:20px;">
+        <label asp-for="CollectionDate"></label>
+        <input asp-for="CollectionDate" type="date" id="CollectionDate" />
+        <div>Earliest collection date is 2 days from today.</div>
+        <span asp-validation-for="CollectionDate" style="color:red;"></span>
+    </div>
+
+    <div>
+        <button type="submit">Place Order</button>
+    </div>
+
+    <div style="margin-top:10px;">
+        <a asp-controller="Baskets" asp-action="Index">
+            Back to Basket
+        </a>
+    </div>
+
+</form>
+
+<script>
+    const collectionDateInput = document.getElementById("CollectionDate");
+
+    const today = new Date();
+    today.setDate(today.getDate() + 2);
+    const minDate = today.toISOString().split("T")[0];
+
+    if (collectionDateInput) {
+        collectionDateInput.min = minDate;
+    }
+
+    const deliveryCheck = document.getElementById("deliveryCheck");
+    const collectionCheck = document.getElementById("collectionCheck");
+
+    const deliveryTypeGroup = document.getElementById("deliveryTypeGroup");
+    const collectionDateGroup = document.getElementById("collectionDateGroup");
+
+    function updateForm() {
+
+        deliveryTypeGroup.style.display = "none";
+        collectionDateGroup.style.display = "none";
+
+        deliveryCheck.disabled = false;
+        collectionCheck.disabled = false;
+
+        if (deliveryCheck.checked) {
+
+            deliveryTypeGroup.style.display = "block";
+            collectionCheck.disabled = true;
+
+        }
+        else if (collectionCheck.checked) {
+
+            collectionDateGroup.style.display = "block";
+            deliveryCheck.disabled = true;
+
+        }
+    }
+
+    deliveryCheck.addEventListener("change", updateForm);
+    collectionCheck.addEventListener("change", updateForm);
+
+    updateForm();
+</script>
+
+@section Scripts {
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
